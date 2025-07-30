@@ -7,7 +7,7 @@ pipeline {
 
     environment {
         IMAGE_NAME = "node${env.BRANCH_NAME}"
-        PORT = (env.BRANCH_NAME == 'main') ? 3000 : 3001
+        PORT = (env.BRANCH_NAME == 'main') ? "3000" : "3001"
     }
 
     stages {
