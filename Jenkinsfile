@@ -7,7 +7,6 @@ pipeline {
 
     environment {
         IMAGE_NAME = "node${env.BRANCH_NAME}"
-        PORT = (env.BRANCH_NAME == 'main') ? '3000' : '3001'
     }
 
     stages {
@@ -31,6 +30,9 @@ pipeline {
 
         stage("Build docker image") {
             steps {
+                script {
+                    env.PORT = (env.BRANCH_NAME == 'main') ? '3000' : '3001'
+                }
                 sh "docker build -t ${IMAGE_NAME}:v1.0 ."
             }
         }
